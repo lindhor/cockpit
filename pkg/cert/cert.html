@@ -1,0 +1,68 @@
+<head>
+    <title>Certificate</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../base1/cockpit.css" type="text/css" rel="stylesheet">
+    <script src="../base1/jquery.js"></script>
+    <link href="../base1/patternfly.css" type="text/css" rel="stylesheet">
+    <link href="react-patterns.css" type="text/css" rel="stylesheet">
+    <script src="../base1/cockpit.js"></script>
+    <script src="react-patterns.js"></script>
+</head>
+<body>
+    <!--
+        <div class="container-fluid">
+            <h3>Select file</h3>
+            <div id="file-ac"></div>
+        </div>
+    -->        
+        <div class="container-fluid" style='max-width: 800px'>
+        <table class="cockpit-form-table">
+            <tr>
+                <td><label class="control-label" for="path">Path</label></td>
+                <td><div id="file-ac"><input class="form-control" id="path" value="/etc/pki/tls/cert.pem"></div></td>
+            </tr>
+            <tr>
+                <td><button class="btn btn-default btn-primary" id="dump">Dump</button></td>
+		<td><span id="result"></span></td>
+            </tr>
+        </table>
+        <p>
+	    <pre id="output"></pre>
+        </p>
+    </div>
+
+    <script>
+        var path = $("#path");
+        var output = $("#output");
+        var result = $("#result");
+
+        $("#dump").on("click", dump_run);
+
+        function dump_run() {
+            var proc = cockpit.spawn(["openssl", "x509", "-in", path.val(), "-inform", "pem", "-text"]);
+            proc.done(dump_success);
+            proc.stream(dump_output);
+            proc.fail(dump_fail);
+
+            result.empty();
+            output.empty();
+        }
+
+        function dump_success() {
+            result.css("color", "green");
+            result.text("success");
+        }
+
+        function dump_fail() {
+            status.css("color", "red");
+            status.text("fail");
+        }
+
+        function dump_output(data) {
+            output.append(document.createTextNode(data));
+        }
+    </script>
+</body>
+</html>
+

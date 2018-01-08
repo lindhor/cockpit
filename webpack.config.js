@@ -12,6 +12,13 @@ var info = {
             "dashboard/list.js",
         ],
 
+        "cert/cert": [
+            "cert/file.jsx",
+        ],
+        "cert/react-patterns": [
+            "cert/react-patterns.js",
+        ],
+
         "docker/docker": [
             "docker/containers.js"
         ],
@@ -185,6 +192,9 @@ var info = {
         "apps/index.html",
         "apps/default.png",
         "apps/manifest.json",
+
+        "cert/cert.html",
+        "cert/manifest.json",
 
         "dashboard/index.html",
         "dashboard/manifest.json",
