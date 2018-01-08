@@ -231,6 +231,8 @@ var info = {
         "packagekit/index.html",
         "packagekit/manifest.json",
 
+        "pinger/ping.html",
+
         "playground/hammer.gif",
         "playground/manifest.json",
         "playground/jquery-patterns.html",

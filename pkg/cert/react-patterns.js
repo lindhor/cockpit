@@ -113,7 +113,7 @@
 
 
   document.addEventListener("DOMContentLoaded", function() {
-      fileAC.file(document.getElementById('file-ac'));
+      fileAC.file(document.getElementById('path'));
   });
 
 }());
